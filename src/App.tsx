@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Header } from "./components/Header";
+import TodoForm from "./components/TodoForm";
 
+type Task = {
+  id: number;
+  text: string;
+  completed: boolean;
+  timestamp: Date;
+}
 function App() {
+  const [tasks, setTasks] = useState<Array<Task>>([])
+  const addTask = (text: string) => {
+    const newTask: Task = {
+      text, 
+      completed: false,
+      timestamp: new Date(),
+      id: tasks.length === 0 ? 1: 1 + Math.max(...tasks.map(t=>Number(t.id)))
+    }
+    setTasks([...tasks, newTask]);
+    
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header></Header>
+      <div className="container">
+        <div className="row">
+          <div className="col-5">
+            <TodoForm addTask={addTask}></TodoForm>
+          </div>
+          <div className="col-7">
+            {JSON.stringify(tasks)}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
