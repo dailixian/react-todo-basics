@@ -49,6 +49,7 @@ export const TodoEntry: React.FC<TodoEntryProps> = (props) => {
           <Toolbar
             task={task}
             deleteTask={deleteTask}
+            isEditable={isEditable}
             setIsEditable={setIsEditable}
           ></Toolbar>
         </div>
