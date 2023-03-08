@@ -2,12 +2,13 @@ import { useState } from "react";
 import { Header } from "./components/Header";
 import TodoForm from "./components/TodoForm";
 
-type Task = {
+export type Task = {
   id: number;
   text: string;
   completed: boolean;
   timestamp: Date;
 }
+
 function App() {
   const [tasks, setTasks] = useState<Array<Task>>([])
   const addTask = (text: string) => {
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <>
-      <Header></Header>
+      <Header tasks={tasks}></Header>
       <div className="container">
         <div className="row">
           <div className="col-5">
