@@ -5,11 +5,14 @@ import { TodoEntry } from "./TodoEntry";
 type TodoListProps = {
   tasks: Task[];
   toggleTodoStatus: (id: number) => void;
+  deleteAll: () => void;
+  deleteCompletedTasks: () => void;
 };
 
 export class TodoList extends Component<TodoListProps> {
   render() {
-    const { tasks, toggleTodoStatus} = this.props;
+    const { tasks, toggleTodoStatus, deleteAll, deleteCompletedTasks } =
+      this.props;
     const tasksJsx = tasks.map((t: Task) => (
       <li className="list-group-item" key={t.id}>
         <TodoEntry task={t} toggleTodoStatus={toggleTodoStatus} />
@@ -18,6 +21,19 @@ export class TodoList extends Component<TodoListProps> {
     return (
       <>
         <ul className="list-group">{tasksJsx}</ul>
+        {tasks.length > 0 && (
+          <div>
+            <button onClick={deleteAll} className="btn btn-outline-danger ">
+              Delete all tasks
+            </button>
+            <button
+              onClick={deleteCompletedTasks}
+              className="btn btn-outline-danger "
+            >
+              Delete completed tasks
+            </button>
+          </div>
+        )}
       </>
     );
   }

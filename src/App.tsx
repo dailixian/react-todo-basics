@@ -30,11 +30,33 @@ function App() {
   };
 
   const toggleTodoStatus = (id: number) => {
-    const task = tasks.find(t => t.id === id);
+    const task = tasks.find((t) => t.id === id);
     if (!task) return;
     task.completed = !task.completed;
     setTasks([...tasks]);
-  }
+  };
+
+  const deleteTask = (id: number) => {
+    const remaining = tasks.filter((t) => t.id !== id);
+    setTasks(remaining);
+  };
+
+  const updateTask = (id: number, text: string) => {
+    const current = tasks.find((t) => t.id === id);
+    if (current) {
+      current.text = text;
+      setTasks([...tasks]);
+    }
+  };
+
+  const deleteAll = () => {
+    setTasks([]);
+  };
+
+  const deleteCompletedTasks = () => {
+    const remaining = tasks.filter((t) => !t.completed);
+    setTasks(remaining);
+  };
 
   return (
     <>
@@ -45,7 +67,12 @@ function App() {
             <TodoForm addTask={addTask}></TodoForm>
           </div>
           <div className="col-7">
-            <TodoList tasks={tasks} toggleTodoStatus={toggleTodoStatus}></TodoList>
+            <TodoList
+              tasks={tasks}
+              toggleTodoStatus={toggleTodoStatus}
+              deleteAll={deleteAll}
+              deleteCompletedTasks={deleteCompletedTasks}
+            ></TodoList>
           </div>
         </div>
       </div>
