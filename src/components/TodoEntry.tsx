@@ -5,9 +5,10 @@ import Toolbar from "./Toolbar";
 type TodoEntryProps = {
   task: Task;
   toggleTodoStatus: (id: number) => void;
+  deleteTask: (id: number) => void;
 };
 export const TodoEntry: React.FC<TodoEntryProps> = (props) => {
-  const { task, toggleTodoStatus } = props;
+  const { task, toggleTodoStatus, deleteTask } = props;
   return (
     <>
       <div className="todoEntry row">
@@ -23,7 +24,7 @@ export const TodoEntry: React.FC<TodoEntryProps> = (props) => {
           </span>
         </div>
         <div className="col-4">
-          <Toolbar></Toolbar>
+          <Toolbar task={task} deleteTask={deleteTask}></Toolbar>
         </div>
       </div>
     </>

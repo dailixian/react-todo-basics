@@ -14,7 +14,7 @@ function App() {
   const [tasks, setTasks] = useState<Array<Task>>([
     { id: 1, text: "clean car", completed: false, timestamp: new Date() },
     { id: 2, text: "buy thing", completed: false, timestamp: new Date() },
-    { id: 1, text: "eat lunch", completed: true, timestamp: new Date() },
+    { id: 3, text: "eat lunch", completed: true, timestamp: new Date() },
   ]);
   const addTask = (text: string) => {
     const newTask: Task = {
@@ -72,6 +72,7 @@ function App() {
               toggleTodoStatus={toggleTodoStatus}
               deleteAll={deleteAll}
               deleteCompletedTasks={deleteCompletedTasks}
+              deleteTask={deleteTask}
             ></TodoList>
           </div>
         </div>
