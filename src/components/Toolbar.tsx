@@ -1,17 +1,21 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Task } from "../App";
 
 type ToolbarProps = {
   task: Task;
   deleteTask: (id: number) => void;
+  setIsEditable: (isEditable: boolean) => void;
 };
 export class Toolbar extends Component<ToolbarProps> {
   render() {
-    const { task, deleteTask } = this.props;
+    const { task, deleteTask, setIsEditable } = this.props;
     return (
       <>
         <span className="toolbar">
-          <button className="btn btn-link bi bi-pencil"></button>
+          <button
+            className="btn btn-link bi bi-pencil"
+            onClick={() => setIsEditable(true)}
+          ></button>
           <button
             className="btn btn-link bi bi-trash"
             onClick={() => deleteTask(task.id)}

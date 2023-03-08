@@ -73,6 +73,7 @@ function App() {
               deleteAll={deleteAll}
               deleteCompletedTasks={deleteCompletedTasks}
               deleteTask={deleteTask}
+              updateTask={updateTask}
             ></TodoList>
           </div>
         </div>
